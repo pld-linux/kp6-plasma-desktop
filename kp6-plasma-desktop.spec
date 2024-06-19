@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.0.5
+%define		kdeplasmaver	6.1.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.0.5
+Version:	6.1.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	4ac4551e1afb524155a1c5fd1028158e
+# Source0-md5:	cac6ebefb73744b295c92add2e5a7742
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -65,6 +65,7 @@ BuildRequires:	kp6-plasma-workspace-devel >= %{kdeplasmaver}
 BuildRequires:	libaccounts-qt6-devel
 BuildRequires:	libcanberra-devel
 BuildRequires:	libsignon-qt6-devel
+BuildRequires:	libxkbregistry-devel
 BuildRequires:	ninja
 BuildRequires:	phonon-qt6-devel
 BuildRequires:	pulseaudio-devel
@@ -83,6 +84,7 @@ BuildRequires:	xorg-xserver-server-devel
 BuildRequires:	xz
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	/bin/awk
+Obsoletes:	kp5-%{kpname} < %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt6dir		%{_libdir}/qt6
@@ -94,6 +96,7 @@ KDE Plasma Desktop.
 Summary:	Data files for %{kpname}
 Summary(pl.UTF-8):	Dane dla %{kpname}
 Group:		X11/Applications
+Obsoletes:	kp5-%{kpname}-data < %{version}
 BuildArch:	noarch
 
 %description data
@@ -167,9 +170,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/plasma/private/trash/libtrashplugin.so
 %{_libdir}/qt6/qml/org/kde/plasma/private/trash/qmldir
 %dir %{_libdir}/qt6/qml/org/kde/private/desktopcontainment
-%dir %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/desktop
-%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/desktop/libdesktopplugin.so
-%{_libdir}/qt6/qml/org/kde/private/desktopcontainment/desktop/qmldir
 %dir %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder
 %attr(755,root,root) %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/libfolderplugin.so
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/qmldir
@@ -222,6 +222,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/qmldir
 %attr(755,root,root) %{_prefix}/libexec/kf6/kauth/kcmdatetimehelper
 %attr(755,root,root) %{_libdir}/qt6/plugins/attica_kde.so
+%{_libdir}/qt6/qml/org/kde/plasma/private/trash/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/trash/trashplugin.qmltypes
+
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
@@ -255,7 +258,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/knsrcfiles/krunner.knsrc
 %{_datadir}/knsrcfiles/ksplash.knsrc
 %{_datadir}/metainfo/org.kde.desktopcontainment.appdata.xml
-%{_datadir}/metainfo/org.kde.desktoptoolbox.appdata.xml
 %{_datadir}/metainfo/org.kde.paneltoolbox.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.desktop.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.desktop.appmenubar.appdata.xml
@@ -289,12 +291,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/plasma/layout-templates/org.kde.plasma.desktop.emptyPanel/contents
 %{_datadir}/plasma/layout-templates/org.kde.plasma.desktop.emptyPanel/contents/layout.js
 %{_datadir}/plasma/layout-templates/org.kde.plasma.desktop.emptyPanel/metadata.json
-%dir %{_datadir}/plasma/packages/org.kde.desktoptoolbox
-%dir %{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents
-%dir %{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents/config
-%dir %{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents/ui
-%{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents/config/main.xml
-%{_datadir}/plasma/packages/org.kde.desktoptoolbox/metadata.json
 %dir %{_datadir}/plasma/packages/org.kde.paneltoolbox
 %dir %{_datadir}/plasma/packages/org.kde.paneltoolbox/contents
 %dir %{_datadir}/plasma/packages/org.kde.paneltoolbox/contents/ui
@@ -369,8 +365,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/knotifications6/kaccess.notifyrc
 %{_datadir}/knotifications6/kcm_touchpad.notifyrc
 %{_datadir}/plasma/emoji
-%{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents/ui/ToolBoxContent.qml
-%{_datadir}/plasma/packages/org.kde.desktoptoolbox/contents/ui/main.qml
 %{_datadir}/qlogging-categories6/kcm_gamecontroller.categories
 %{_datadir}/qlogging-categories6/kcm_kded.categories
 %{_datadir}/qlogging-categories6/kcm_keyboard.categories
@@ -381,3 +375,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/accounts/providers/kde/opendesktop.provider
 %{_datadir}/accounts/services/kde/opendesktop-rating.service
 %{_desktopdir}/kde-mimeapps.list
+%{_datadir}/sddm/themes/breeze/Background.qml
+%{_datadir}/sddm/themes/breeze/KeyboardButton.qml
+%{_datadir}/sddm/themes/breeze/Login.qml
+%{_datadir}/sddm/themes/breeze/Main.qml
+%{_datadir}/sddm/themes/breeze/SessionButton.qml
+%{_datadir}/sddm/themes/breeze/default-logo.svg
+%{_datadir}/sddm/themes/breeze/faces/.face.icon
+%{_datadir}/sddm/themes/breeze/metadata.desktop
+%{_datadir}/sddm/themes/breeze/preview.png
+%{_datadir}/sddm/themes/breeze/theme.conf
+%{_datadir}/config.kcfg/kcmaccessibilityshakecursor.kcfg
