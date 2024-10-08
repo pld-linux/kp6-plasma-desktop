@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.1.5
+%define		kdeplasmaver	6.2.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.1.5
-Release:	2
+Version:	6.2.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6b23ca6c6977d66b81f591da9e6a21c4
+# Source0-md5:	52813c8d09b3e8c3d5f85c0586770f63
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -224,7 +224,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/plugins/attica_kde.so
 %{_libdir}/qt6/qml/org/kde/plasma/private/trash/kde-qmlmodule.version
 %{_libdir}/qt6/qml/org/kde/plasma/private/trash/trashplugin.qmltypes
-
+%{systemduserunitdir}/plasma-kaccess.service
+%{_libdir}/qt6/qml/org/kde/plasma/private/pager/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/pager/pagerplugin.qmltypes
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
@@ -239,6 +241,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/splashscreensettings.kcfg
 %{_datadir}/config.kcfg/workspaceoptions_kdeglobalssettings.kcfg
 %{_datadir}/config.kcfg/workspaceoptions_plasmasettings.kcfg
+%{_datadir}/config.kcfg/kcmaccessibilitycolorblindnesscorrection.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.touchpad.xml
 %{_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmclock.service
 %{_datadir}/dbus-1/system.d/org.kde.kcontrol.kcmclock.conf
