@@ -183,6 +183,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/plugins/plasma/kcminit
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcminit/kcm_mouse_init.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcminit/kcm_touchpad_init.so
+%dir %{_libdir}/qt6/plugins/plasma
 %dir %{_libdir}/qt6/plugins/plasma/kcms
 %dir %{_libdir}/qt6/plugins/plasma/kcms/systemsettings
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_access.so
@@ -364,6 +365,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_touchscreen.desktop
 %{_desktopdir}/kaccess.desktop
 %{_desktopdir}/kcm_gamecontroller.desktop
+%dir %{_datadir}/kcm_recentFiles
+%dir %{_datadir}/kcm_recentFiles/workspace
+%dir %{_datadir}/kcm_recentFiles/workspace/settings
+%dir %{_datadir}/kcm_recentFiles/workspace/settings/qml
+%dir %{_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles
 %{_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles/BlacklistApplicationView.qml
 %{_datadir}/knotifications6/kaccess.notifyrc
 %{_datadir}/knotifications6/kcm_touchpad.notifyrc
