@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.2.0
+%define		kdeplasmaver	6.2.1
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.2.0
+Version:	6.2.1
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	52813c8d09b3e8c3d5f85c0586770f63
+# Source0-md5:	adb5cd37ae4e8fa0af52490e8d9a21fd
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -214,12 +214,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_activities.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_desktoppaths.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_gamecontroller.so
-#%attr(755,root,root) %{_libdir}/qt6/plugins/plasma5support/dataengine/plasma_engine_touchpad.so
 %{_libdir}/qt6/qml/org/kde/plasma/activityswitcher/activityswitcherextensionplugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/plasma/activityswitcher/kde-qmlmodule.version
 %{_libdir}/qt6/qml/org/kde/plasma/emoji/EmojierDeclarativePlugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/plasma/emoji/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/libkcm_keyboard_declarative.so
+%dir %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard
+%attr(755,root,root) %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/libkcm_keyboard_declarative.so
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/qmldir
 %attr(755,root,root) %{_prefix}/libexec/kf6/kauth/kcmdatetimehelper
 %attr(755,root,root) %{_libdir}/qt6/plugins/attica_kde.so
