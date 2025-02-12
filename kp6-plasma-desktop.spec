@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.2.5
+%define		kdeplasmaver	6.3.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.2.5
-Release:	2
+Version:	6.3.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	6bdf8c871ca06bdc019ee886c2086d81
+# Source0-md5:	67ce3e60b678af3fbf597f7d64b2ba9a
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -65,6 +65,7 @@ BuildRequires:	kp6-plasma-workspace-devel >= %{kdeplasmaver}
 BuildRequires:	libaccounts-qt6-devel
 BuildRequires:	libcanberra-devel
 BuildRequires:	libsignon-qt6-devel
+BuildRequires:	libwacom-devel
 BuildRequires:	libxkbregistry-devel
 BuildRequires:	ninja
 BuildRequires:	phonon-qt6-devel
@@ -228,6 +229,9 @@ rm -rf $RPM_BUILD_ROOT
 %{systemduserunitdir}/plasma-kaccess.service
 %{_libdir}/qt6/qml/org/kde/plasma/private/pager/kde-qmlmodule.version
 %{_libdir}/qt6/qml/org/kde/plasma/private/pager/pagerplugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/folderplugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/kde-qmlmodule.version
+
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
@@ -370,9 +374,9 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kcm_recentFiles/workspace/settings
 %dir %{_datadir}/kcm_recentFiles/workspace/settings/qml
 %dir %{_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles
-%{_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles/BlacklistApplicationView.qml
+%{_datadir}/kcm_recentFiles/workspace/settings/qml/recentFiles/ExcludedApplicationView.qml
 %{_datadir}/knotifications6/kaccess.notifyrc
-%{_datadir}/knotifications6/kcm_touchpad.notifyrc
+##%{_datadir}/knotifications6/kcm_touchpad.notifyrc
 %{_datadir}/plasma/emoji
 %{_datadir}/qlogging-categories6/kcm_gamecontroller.categories
 %{_datadir}/qlogging-categories6/kcm_kded.categories
