@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.3.4
+%define		kdeplasmaver	6.3.5
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.3.4
+Version:	6.3.5
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	3db58d15c9686712b6910c297a47f141
+# Source0-md5:	ea46933f09e5128de7cded404042d399
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -85,7 +85,7 @@ BuildRequires:	xorg-xserver-server-devel
 BuildRequires:	xz
 Requires:	%{name}-data = %{version}-%{release}
 Requires:	/bin/awk
-Obsoletes:	kp5-%{kpname} < %{version}
+Obsoletes:	kp5-%{kpname} < 6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		qt6dir		%{_libdir}/qt6
@@ -97,7 +97,8 @@ KDE Plasma Desktop.
 Summary:	Data files for %{kpname}
 Summary(pl.UTF-8):	Dane dla %{kpname}
 Group:		X11/Applications
-Obsoletes:	kp5-%{kpname}-data < %{version}
+Requires(post,postun):	desktop-file-utils
+Obsoletes:	kp5-%{kpname}-data < 6
 BuildArch:	noarch
 
 %description data
@@ -137,6 +138,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
+
+%post data
+%update_desktop_database_post
+
+%postun data
+%update_desktop_database_postun
 
 %files
 %defattr(644,root,root,755)
