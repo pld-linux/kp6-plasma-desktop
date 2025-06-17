@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.3.5
+%define		kdeplasmaver	6.4.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.3.5
+Version:	6.4.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	ea46933f09e5128de7cded404042d399
+# Source0-md5:	026b62655ddeb3795f343da1d82de981
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -196,7 +196,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/plugins/plasma/kcms/systemsettings
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_access.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_baloofile.so
-%attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_componentchooser.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_kded.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_keyboard.so
 %attr(755,root,root) %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_keys.so
@@ -238,7 +237,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/qml/org/kde/plasma/private/pager/pagerplugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/folderplugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/kde-qmlmodule.version
-
+%{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/kcm_keyboard_declarative.qmltypes
+%{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/kimpanelplugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/showdesktopplugin.qmltypes
+%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/kde-qmlmodule.version
+%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/taskmanagerplugin.qmltypes
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
@@ -270,6 +276,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/kcmsolidactions
 %{_datadir}/kcmsolidactions/solid-action-template.desktop
 %{_datadir}/kglobalaccel/org.kde.plasma.emojier.desktop
+%{_datadir}/kglobalaccel/org.kde.touchpadshortcuts.desktop
 %{_datadir}/knsrcfiles/krunner.knsrc
 %{_datadir}/knsrcfiles/ksplash.knsrc
 %{_datadir}/metainfo/org.kde.desktopcontainment.appdata.xml
@@ -347,7 +354,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_activities.desktop
 %{_desktopdir}/kcm_baloofile.desktop
 %{_desktopdir}/kcm_clock.desktop
-%{_desktopdir}/kcm_componentchooser.desktop
 %{_desktopdir}/kcm_desktoppaths.desktop
 %{_desktopdir}/kcm_kded.desktop
 %{_desktopdir}/kcm_keyboard.desktop
