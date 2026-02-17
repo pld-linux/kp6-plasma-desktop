@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.5.5
+%define		kdeplasmaver	6.6.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.5.5
-Release:	2
+Version:	6.6.0
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	104f2481e2567d0f2908dcb5627d420e
+# Source0-md5:	1751617b4c9dc2abecdbc6ec89144b2c
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -166,18 +166,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/qml/org/kde/plasma/activityswitcher
 %{_libdir}/qt6/qml/org/kde/plasma/activityswitcher/libactivityswitcherextensionplugin.so
 %{_libdir}/qt6/qml/org/kde/plasma/activityswitcher/qmldir
-%dir %{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel
-%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/libkimpanelplugin.so
-%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/qmldir
-%dir %{_libdir}/qt6/qml/org/kde/plasma/private/pager
-%{_libdir}/qt6/qml/org/kde/plasma/private/pager/libpagerplugin.so
-%{_libdir}/qt6/qml/org/kde/plasma/private/pager/qmldir
-%dir %{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop
-%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/libshowdesktopplugin.so
-%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/qmldir
-%dir %{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager
-%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/libtaskmanagerplugin.so
-%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/qmldir
 %dir %{_libdir}/qt6/qml/org/kde/private/desktopcontainment
 %dir %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/libfolderplugin.so
@@ -238,25 +226,24 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_prefix}/libexec/kf6/kauth/kcmdatetimehelper
 %{_libdir}/qt6/plugins/attica_kde.so
 %{systemduserunitdir}/plasma-kaccess.service
-%{_libdir}/qt6/qml/org/kde/plasma/private/pager/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/pager/pagerplugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/folderplugin.qmltypes
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/kde-qmlmodule.version
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/kcm_keyboard_declarative.qmltypes
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/kimpanel/kimpanelplugin.qmltypes
-%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/showdesktop/showdesktopplugin.qmltypes
-%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/kde-qmlmodule.version
-%{_libdir}/qt6/qml/org/kde/plasma/private/taskmanager/taskmanagerplugin.qmltypes
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.keyboardlayout.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.kimpanel.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.marginsseparator.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.pager.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showActivityManager.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showdesktop.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.taskmanager.so
+
 
 %files data -f %{kpname}.lang
 %defattr(644,root,root,755)
+%{_datadir}/config.kcfg/kactivitymanagerd_plugins_settings.kcfg
 %{_desktopdir}/org.kde.knetattach.desktop
 %{_desktopdir}/org.kde.plasma.emojier.desktop
-%{_datadir}/config.kcfg/kactivitymanagerd_plugins_settings.kcfg
-%{_datadir}/config.kcfg/kactivitymanagerd_settings.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilitybell.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilitykeyboard.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilitymouse.kcfg
@@ -292,14 +279,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/metainfo/org.kde.plasma.desktop.emptyPanel.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.folder.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.icontasks.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.keyboardlayout.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.kimpanel.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.marginsseparator.appdata.xml
 %{_datadir}/metainfo/org.kde.plasma.minimizeall.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.pager.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.showActivityManager.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.showdesktop.appdata.xml
-%{_datadir}/metainfo/org.kde.plasma.taskmanager.appdata.xml
 %{_datadir}/metainfo/org.kde.plasmashell.metainfo.xml
 %dir %{_datadir}/plasma/layout-templates
 %dir %{_datadir}/plasma/layout-templates/org.kde.plasma.desktop.appmenubar
@@ -322,14 +302,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/plasmoids/org.kde.desktopcontainment
 %{_datadir}/plasma/plasmoids/org.kde.plasma.folder
 %{_datadir}/plasma/plasmoids/org.kde.plasma.icontasks
-%{_datadir}/plasma/plasmoids/org.kde.plasma.keyboardlayout
-%{_datadir}/plasma/plasmoids/org.kde.plasma.kimpanel
-%{_datadir}/plasma/plasmoids/org.kde.plasma.marginsseparator
 %{_datadir}/plasma/plasmoids/org.kde.plasma.minimizeall
-%{_datadir}/plasma/plasmoids/org.kde.plasma.pager
-%{_datadir}/plasma/plasmoids/org.kde.plasma.showActivityManager
-%{_datadir}/plasma/plasmoids/org.kde.plasma.showdesktop
-%{_datadir}/plasma/plasmoids/org.kde.plasma.taskmanager
 %{_datadir}/plasma/shells/org.kde.plasma.desktop
 %{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_datadir}/solid/devices/solid-device-Battery.desktop
