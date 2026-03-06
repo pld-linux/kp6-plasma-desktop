@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
 Version:	6.6.2
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -371,6 +371,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/accounts/services/kde/opendesktop-rating.service
 %{_desktopdir}/kde-mimeapps.list
 %dir %{_datadir}/sddm/themes/breeze
+%dir %{_datadir}/sddm/themes/breeze/faces
 %{_datadir}/sddm/themes/breeze/Background.qml
 %{_datadir}/sddm/themes/breeze/KeyboardButton.qml
 %{_datadir}/sddm/themes/breeze/Login.qml
