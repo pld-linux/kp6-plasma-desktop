@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.6.4
+%define		kdeplasmaver	6.6.5
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.6.4
-Release:	2
+Version:	6.6.5
+Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	9729fc2c17489acace5f221b8c82d487
+# Source0-md5:	2f8a00c1bbaa8611ddbc16ad1446b0e8
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
