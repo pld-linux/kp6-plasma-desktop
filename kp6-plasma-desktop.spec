@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.6.5
+%define		kdeplasmaver	6.7.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.6.5
+Version:	6.7.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	2f8a00c1bbaa8611ddbc16ad1446b0e8
+# Source0-md5:	65923c5b1036af9def0854da6cd46fa2
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -135,6 +135,8 @@ rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,sr@latin}
 # not supported by glibc yet
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
+sed -i -e 's|/usr/bin/env sh|/bin/sh|' $RPM_BUILD_ROOT%{_datadir}/kconf_update/50-krunner-activate-typing.sh
+
 %find_lang %{kpname} --all-name --with-kde
 
 %clean
@@ -226,7 +228,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/libkcm_keyboard_declarative.so
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/qmldir
-%attr(755,root,root) %{_prefix}/libexec/kf6/kauth/kcmdatetimehelper
 %{_libdir}/qt6/plugins/attica_kde.so
 %{systemduserunitdir}/plasma-kaccess.service
 %{_libdir}/qt6/qml/org/kde/private/desktopcontainment/folder/folderplugin.qmltypes
@@ -235,7 +236,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/qml/org/kde/plasma/private/kcm_keyboard/kde-qmlmodule.version
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.keyboardlayout.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.kimpanel.so
-%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.marginsseparator.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.pager.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showActivityManager.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showdesktop.so
@@ -256,8 +256,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/workspaceoptions_plasmasettings.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilitycolorblindnesscorrection.kcfg
 %{_datadir}/dbus-1/interfaces/org.kde.touchpad.xml
-%{_datadir}/dbus-1/system-services/org.kde.kcontrol.kcmclock.service
-%{_datadir}/dbus-1/system.d/org.kde.kcontrol.kcmclock.conf
 %{_iconsdir}/hicolor/*x*/devices/input*.png
 %{_iconsdir}/hicolor/scalable/devices/input-touchpad.svgz
 %dir %{_datadir}/kcmkeys
@@ -307,7 +305,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/plasma/plasmoids/org.kde.plasma.icontasks
 %{_datadir}/plasma/plasmoids/org.kde.plasma.minimizeall
 %{_datadir}/plasma/shells/org.kde.plasma.desktop
-%{_datadir}/polkit-1/actions/org.kde.kcontrol.kcmclock.policy
 %{_datadir}/solid/devices/solid-device-Battery.desktop
 %{_datadir}/solid/devices/solid-device-Block.desktop
 %{_datadir}/solid/devices/solid-device-Camera.desktop
@@ -389,3 +386,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kcmaccessibilityinvert.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilityshakecursor.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilityzoommagnifier.kcfg
+%{_datadir}/qlogging-categories6/kcm_touchpad.categories
+%attr(755,root,root) %{_datadir}/kconf_update/50-krunner-activate-typing.sh
+%{_datadir}/kconf_update/50-krunner-activate-typing.upd
