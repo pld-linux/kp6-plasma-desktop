@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.7.5
+%define		kdeplasmaver	6.8.0
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.7.5
+Version:	6.8.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	56e4a258f997604742d1804cd8cfcce3
+# Source0-md5:	c459de76db852e0245394b34bc6ad991
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -135,7 +135,7 @@ rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,sr@latin}
 # not supported by glibc yet
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/ie
 
-sed -i -e 's|/usr/bin/env sh|/bin/sh|' $RPM_BUILD_ROOT%{_datadir}/kconf_update/50-krunner-activate-typing.sh
+sed -i -e 's|/usr/bin/env bash|/bin/bash|' $RPM_BUILD_ROOT%{_datadir}/kconf_update/50-krunner-activate-typing.sh
 
 %find_lang %{kpname} --all-name --with-kde
 
@@ -155,8 +155,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 /etc/xdg/autostart/kaccess.desktop
 %attr(755,root,root) %{_bindir}/kaccess
-%attr(755,root,root) %{_bindir}/kapplymousetheme
-%attr(755,root,root) %{_bindir}/kcm-touchpad-list-devices
 %attr(755,root,root) %{_bindir}/knetattach
 %attr(755,root,root) %{_bindir}/krunner-plugininstaller
 %attr(755,root,root) %{_bindir}/solid-action-desktop-gen
@@ -164,7 +162,6 @@ rm -rf $RPM_BUILD_ROOT
 %ghost %{_libdir}/libkglobalaccelmodel.so.6
 %{_libdir}/libkglobalaccelmodel.so.*.*
 %{_libdir}/qt6/plugins/kf6/kded/device_automounter.so
-%{_libdir}/qt6/plugins/kf6/kded/keyboard.so
 %{_libdir}/qt6/plugins/kf6/krunner/krunner_keys.so
 %{_libdir}/qt6/plugins/kf6/krunner/krunner_kwin.so
 %{_libdir}/qt6/plugins/kf6/krunner/krunner_plasma-desktop.so
@@ -181,10 +178,6 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/qt6/qml/org/kde/plasma/emoji
 %{_libdir}/qt6/qml/org/kde/plasma/emoji/libEmojierDeclarativePlugin.so
 %{_libdir}/qt6/qml/org/kde/plasma/emoji/qmldir
-%{_libdir}/qt6/plugins/kf6/kded/kded_touchpad.so
-%dir %{_libdir}/qt6/plugins/plasma/kcminit
-%{_libdir}/qt6/plugins/plasma/kcminit/kcm_mouse_init.so
-%{_libdir}/qt6/plugins/plasma/kcminit/kcm_touchpad_init.so
 %dir %{_libdir}/qt6/plugins/plasma
 %dir %{_libdir}/qt6/plugins/plasma/applets
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.panel.so
@@ -211,7 +204,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcm_device_automounter.so
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcm_qtquicksettings.so
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcm_solid_actions.so
-%{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcmspellchecking.so
 %dir %{_libdir}/qt6/plugins/plasma/kcms/desktop
 %{_libdir}/qt6/plugins/plasma/kcms/desktop/kcm_krunnersettings.so
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_plasmasearch.so
@@ -240,6 +232,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showActivityManager.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.showdesktop.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.taskmanager.so
+%{_libdir}/qt6/plugins/kf6/kded/screenreader.so
+%{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.dwellclicker.so
+%{_libdir}/qt6/plugins/plasma/kcms/systemsettings_qwidgets/kcm_spellchecking.so
 
 
 %files data -f %{kpname}.lang
@@ -255,7 +250,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/workspaceoptions_kdeglobalssettings.kcfg
 %{_datadir}/config.kcfg/workspaceoptions_plasmasettings.kcfg
 %{_datadir}/config.kcfg/kcmaccessibilitycolorblindnesscorrection.kcfg
-%{_datadir}/dbus-1/interfaces/org.kde.touchpad.xml
 %{_iconsdir}/hicolor/*x*/devices/input*.png
 %{_iconsdir}/hicolor/scalable/devices/input-touchpad.svgz
 %dir %{_datadir}/kcmkeys
@@ -336,7 +330,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kcm_tablet.desktop
 %{_desktopdir}/kcm_touchpad.desktop
 %{_desktopdir}/kcm_workspace.desktop
-%{_desktopdir}/kcmspellchecking.desktop
 %dir %{_datadir}/kcmmouse
 %{_datadir}/kcmmouse/cursor*.pcf.gz
 %{_datadir}/kcmmouse/pics
@@ -389,3 +382,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/qlogging-categories6/kcm_touchpad.categories
 %attr(755,root,root) %{_datadir}/kconf_update/50-krunner-activate-typing.sh
 %{_datadir}/kconf_update/50-krunner-activate-typing.upd
+%{_desktopdir}/kcm_spellchecking.desktop
+%{_datadir}/config.kcfg/gamecontrolleremulationsettings.kcfg
+%{_datadir}/config.kcfg/keyboardmiscsettings.kcfg
+%{_datadir}/config.kcfg/keyboardsettings.kcfg
+%{_datadir}/config.kcfg/plasma-renderersettings.kcfg
+%{_datadir}/kglobalaccel/org.kde.screenreader.desktop
+%{_datadir}/qlogging-categories6/kcm_access.categories
+%{_datadir}/qlogging-categories6/screenreader.categories
