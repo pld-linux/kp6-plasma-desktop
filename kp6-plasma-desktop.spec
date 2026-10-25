@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
 Version:	6.8.0
-Release:	3
+Release:	4
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -130,6 +130,8 @@ ctest
 %install
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
+# a common dir
+mkdir -p $RPM_BUILD_ROOT%{_libdir}/qt6/plugins/plasma/kcminit
 rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,sr@latin}
 
 # not supported by glibc yet
