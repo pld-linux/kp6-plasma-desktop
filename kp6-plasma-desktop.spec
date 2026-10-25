@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
 Version:	6.8.0
-Release:	2
+Release:	3
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
@@ -185,6 +185,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.kickoff.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.trash.so
 %{_libdir}/qt6/plugins/plasma/applets/org.kde.plasma.windowlist.so
+# a common dir
+%dir %{_libdir}/qt6/plugins/plasma/kcminit
 %dir %{_libdir}/qt6/plugins/plasma/kcms
 %dir %{_libdir}/qt6/plugins/plasma/kcms/systemsettings
 %{_libdir}/qt6/plugins/plasma/kcms/systemsettings/kcm_access.so
