@@ -62,6 +62,7 @@ BuildRequires:	kp6-libksysguard-devel >= %{kdeplasmaver}
 BuildRequires:	kp6-plasma-activities-devel
 BuildRequires:	kp6-plasma-activities-stats-devel
 BuildRequires:	kp6-plasma-workspace-devel >= %{kdeplasmaver}
+BuildRequires:	kp6-plasma5support-devel >= %{kdeplasmaver}
 BuildRequires:	libaccounts-qt6-devel
 BuildRequires:	libcanberra-devel
 BuildRequires:	libsignon-qt6-devel
@@ -131,7 +132,7 @@ ctest
 rm -rf $RPM_BUILD_ROOT
 %ninja_install -C build
 # a common dir
-mkdir -p $RPM_BUILD_ROOT%{_libdir}/qt6/plugins/plasma/kcminit
+install -d $RPM_BUILD_ROOT%{_libdir}/qt6/plugins/plasma/kcminit
 rm -rf $RPM_BUILD_ROOT%{_kdedocdir}/{sr,sr@latin}
 
 # not supported by glibc yet
