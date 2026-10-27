@@ -11,7 +11,7 @@
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
 Version:	6.8.0
-Release:	4
+Release:	5
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
