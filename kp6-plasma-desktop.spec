@@ -4,18 +4,18 @@
 # TODO:
 # PackageKit qt5
 #
-%define		kdeplasmaver	6.8.2
+%define		kdeplasmaver	6.8.3
 %define		qtver		5.15.2
 %define		kpname		plasma-desktop
 
 Summary:	KDE Plasma Desktop
 Name:		kp6-%{kpname}
-Version:	6.8.2
+Version:	6.8.3
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	https://download.kde.org/stable/plasma/%{kdeplasmaver}/%{kpname}-%{version}.tar.xz
-# Source0-md5:	9c5a141d53a689077e5c595a1faf579a
+# Source0-md5:	11605423062c6304026ed521a5347ef9
 URL:		https://www.kde.org/
 BuildRequires:	AppStream-qt6-devel
 BuildRequires:	Qt6Concurrent-devel >= %{qtver}
@@ -374,7 +374,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/sddm/themes/breeze/KeyboardButton.qml
 %{_datadir}/sddm/themes/breeze/Login.qml
 %{_datadir}/sddm/themes/breeze/Main.qml
+%{_datadir}/sddm/themes/breeze/QtVirtualKeyboard.qml
 %{_datadir}/sddm/themes/breeze/SessionButton.qml
+%{_datadir}/sddm/themes/breeze/VirtualKeyboard.qml
 %{_datadir}/sddm/themes/breeze/default-logo.svg
 %{_datadir}/sddm/themes/breeze/faces/.face.icon
 %{_datadir}/sddm/themes/breeze/metadata.desktop
